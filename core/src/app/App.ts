@@ -6,14 +6,21 @@ export class App {
 
     constructor(
         private readonly modules: ModuleRegistry
-    ) {}
+    ) {
+    }
 
     public start(): void {
 
         Logger.line();
+
         Logger.info(Version.APPLICATION_NAME);
-        Logger.info(`Version ${Version.VERSION}`);
+
+        Logger.info(
+            `Version ${Version.VERSION}`
+        );
+
         Logger.line();
+
         Logger.empty();
 
         Logger.info("Application started.");
@@ -26,7 +33,7 @@ export class App {
 
         Logger.empty();
 
-        Logger.info("Shutting down...");
+        Logger.info("Stopping application...");
 
         this.modules.shutdown();
 

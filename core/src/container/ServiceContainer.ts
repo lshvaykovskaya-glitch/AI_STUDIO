@@ -1,22 +1,35 @@
 export class ServiceContainer {
 
-    private readonly services = new Map<string, unknown>();
+    private readonly instances = new Map<Function, unknown>();
 
-    public register<T>(key: string, service: T): void {
+    public registerInstance<T>(
+        token: new (...args: never[]) => T,
+        instance: T
+    ): void {
 
-        this.services.set(key, service);
+        if (this.instances.has(token)) {
+            throw new Error(
+                `Service '${token.name}' is already registered.`
+            );
+        }
+
+        this.instances.set(token, instance);
 
     }
 
-    public resolve<T>(key: string): T {
+    public resolve<T>(
+        token: new (...args: never[]) => T
+    ): T {
 
-        const service = this.services.get(key);
+        const instance = this.instances.get(token);
 
-        if (!service) {
-            throw new Error(`Service '${key}' is not registered.`);
+        if (!instance) {
+            throw new Error(
+                `Service '${token.name}' is not registered.`
+            );
         }
 
-        return service as T;
+        return instance as T;
 
     }
 

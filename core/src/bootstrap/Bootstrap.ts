@@ -1,28 +1,19 @@
-import { App } from "../app/App";
-import { ServiceContainer } from "../container/ServiceContainer";
-import { Logger } from "../logging/Logger";
-import { ModuleRegistry } from "../modules/ModuleRegistry";
+import { Runtime } from "../runtime/Runtime";
 
 export class Bootstrap {
 
     public start(): void {
 
-        Logger.info("Bootstrapping application...");
-        Logger.empty();
+        const runtime = new Runtime();
 
-        const container = new ServiceContainer();
-
-        const modules = new ModuleRegistry();
-
-        container.register("ModuleRegistry", modules);
-
-        const app = new App(modules);
-
-        app.start();
+        runtime.start();
 
         process.on("SIGINT", () => {
-            app.stop();
+
+            runtime.stop();
+
             process.exit(0);
+
         });
 
     }
