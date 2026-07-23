@@ -1,6 +1,26 @@
-node_modules
-dist
-coverage
+# Dependencies
+node_modules/
+
+# Build
+dist/
+
+# Logs
 *.log
-.vscode
+
+# IDE
+.vscode/
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Runtime
+output/
+
+# Temporary
+trace/
+coverage/
+
+# Environment
+.env
+.env.*
