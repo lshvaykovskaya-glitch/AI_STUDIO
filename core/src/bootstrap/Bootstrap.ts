@@ -1,4 +1,4 @@
-import { Runtime } from "../runtime/Runtime";
+import { Runtime } from "../runtime/Runtime.js";
 
 export class Bootstrap {
 

@@ -1,4 +1,4 @@
-import { Module } from "./Module";
+import { Module } from "./Module.js";
 
 export class ModuleRegistry {
 

@@ -1,6 +1,6 @@
-import { Logger } from "../logging/Logger";
-import { ModuleRegistry } from "../modules/ModuleRegistry";
-import { Version } from "./Version";
+import { Logger } from "../logging/Logger.js";
+import { ModuleRegistry } from "../modules/ModuleRegistry.js";
+import { Version } from "./Version.js";
 
 export class App {
 

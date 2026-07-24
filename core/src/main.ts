@@ -1,4 +1,4 @@
-import { Bootstrap } from "./bootstrap/Bootstrap";
+import { Bootstrap } from "./bootstrap/Bootstrap.js";
 
 const bootstrap = new Bootstrap();
 

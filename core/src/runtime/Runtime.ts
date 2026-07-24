@@ -1,7 +1,7 @@
-import { App } from "../app/App";
-import { ServiceContainer } from "../container/ServiceContainer";
-import { Logger } from "../logging/Logger";
-import { ModuleRegistry } from "../modules/ModuleRegistry";
+import { App } from "../app/App.js";
+import { ServiceContainer } from "../container/ServiceContainer.js";
+import { Logger } from "../logging/Logger.js";
+import { ModuleRegistry } from "../modules/ModuleRegistry.js";
 
 export class Runtime {
 
