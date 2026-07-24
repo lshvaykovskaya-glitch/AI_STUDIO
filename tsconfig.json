@@ -1,35 +1,42 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
+    "compilerOptions": {
+        "target": "ES2022",
 
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
 
-    "rootDir": "./core/src",
-    "outDir": "./dist",
+        "rootDir": ".",
+        "outDir": "./dist",
 
-    "strict": true,
+        "strict": true,
 
-    "declaration": true,
-    "sourceMap": true,
+        "declaration": true,
+        "sourceMap": true,
 
-    "types": [
-      "node"
+        "types": [
+            "node"
+        ],
+
+        "isolatedModules": true,
+
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitOverride": true,
+        "noUncheckedIndexedAccess": true,
+        "exactOptionalPropertyTypes": true
+    },
+
+    "include": [
+        "core/src/**/*.ts",
+        "providers/src/**/*.ts",
+        "memory/**/*.ts",
+        "workspace/**/*.ts",
+        "plugins/**/*.ts",
+        "automation/**/*.ts"
     ],
 
-    "isolatedModules": true,
-
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitOverride": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true
-  },
-  "include": [
-    "core/src/**/*.ts"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
 }
