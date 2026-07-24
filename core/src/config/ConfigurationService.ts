@@ -32,6 +32,12 @@ export class ConfigurationService {
 
     }
 
+    public reload(): void {
+
+        this.load();
+
+    }
+
     public getApp(): AppConfiguration {
 
         return this.app;

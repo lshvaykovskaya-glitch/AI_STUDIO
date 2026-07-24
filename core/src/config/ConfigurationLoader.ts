@@ -1,15 +1,39 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+
+import { ConfigurationError } from "./ConfigurationError.js";
 
 export class ConfigurationLoader {
 
     public load<T>(path: string): T {
 
-        const content = readFileSync(
-            path,
-            "utf-8"
-        );
+        if (!existsSync(path)) {
 
-        return JSON.parse(content) as T;
+            throw new ConfigurationError(
+                `Configuration file not found: ${path}`
+            );
+
+        }
+
+        try {
+
+            const content = readFileSync(
+                path,
+                "utf-8"
+            );
+
+            return JSON.parse(content) as T;
+
+        } catch (error) {
+
+            throw new ConfigurationError(
+                `Failed to load configuration '${path}': ${
+                    error instanceof Error
+                        ? error.message
+                        : "Unknown error"
+                }`
+            );
+
+        }
 
     }
 
