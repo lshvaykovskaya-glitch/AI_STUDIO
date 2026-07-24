@@ -1,0 +1,7 @@
+{
+    "workspace": {
+        "output": "./output",
+        "memory": "./memory",
+        "plugins": "./plugins"
+    }
+}

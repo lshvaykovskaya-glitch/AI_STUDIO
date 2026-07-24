@@ -1,0 +1,7 @@
+{
+    "application": {
+        "name": "AI Studio",
+        "version": "0.3.0",
+        "environment": "development"
+    }
+}

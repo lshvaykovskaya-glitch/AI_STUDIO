@@ -1,4 +1,5 @@
 import { App } from "../app/App.js";
+import { ConfigurationService } from "../config/ConfigurationService.js";
 import { ServiceContainer } from "../container/ServiceContainer.js";
 import { Logger } from "../logging/Logger.js";
 import { ModuleRegistry } from "../modules/ModuleRegistry.js";
@@ -9,6 +10,8 @@ export class Runtime {
 
     private readonly modules: ModuleRegistry;
 
+    private readonly configuration: ConfigurationService;
+
     private readonly app: App;
 
     constructor() {
@@ -17,9 +20,16 @@ export class Runtime {
 
         this.modules = new ModuleRegistry();
 
+        this.configuration = new ConfigurationService();
+
         this.container.registerInstance(
             ModuleRegistry,
             this.modules
+        );
+
+        this.container.registerInstance(
+            ConfigurationService,
+            this.configuration
         );
 
         this.app = new App(
@@ -29,6 +39,14 @@ export class Runtime {
     }
 
     public start(): void {
+
+        Logger.info("Loading configuration...");
+
+        this.configuration.load();
+
+        Logger.info("Configuration loaded.");
+
+        Logger.empty();
 
         Logger.info("Starting Runtime...");
         Logger.empty();
