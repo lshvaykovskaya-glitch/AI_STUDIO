@@ -1,4 +1,6 @@
 import { TextProvider } from "../../contracts/TextProvider.js";
+import { GenerateTextRequest } from "../../models/GenerateTextRequest.js";
+import { GenerateTextResponse } from "../../models/GenerateTextResponse.js";
 
 export class MockTextProvider implements TextProvider {
 
@@ -15,10 +17,14 @@ export class MockTextProvider implements TextProvider {
     }
 
     public async generateText(
-        prompt: string
-    ): Promise<string> {
+        request: GenerateTextRequest
+    ): Promise<GenerateTextResponse> {
 
-        return `Mock response: ${prompt}`;
+        return {
+
+            text: `Mock response: ${request.prompt}`
+
+        };
 
     }
 

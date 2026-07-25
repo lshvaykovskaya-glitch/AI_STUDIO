@@ -1,7 +1,10 @@
 import { Logger } from "../logging/Logger.js";
 import { ModuleRegistry } from "../modules/ModuleRegistry.js";
 import { Version } from "./Version.js";
+
 import { ProviderManager } from "../../../providers/src/manager/ProviderManager.js";
+import { TextProvider } from "../../../providers/src/contracts/TextProvider.js";
+import { TextGenerationService } from "../../../providers/src/services/TextGenerationService.js";
 
 export class App {
 
@@ -46,6 +49,30 @@ export class App {
             }
 
         }
+
+        Logger.empty();
+
+        const textProvider = this.providers.get(
+            "mock"
+        ) as TextProvider;
+
+        const service = new TextGenerationService(
+            textProvider
+        );
+
+        const prompt = "Hello AI";
+
+        Logger.info("AI Request:");
+        Logger.info(prompt);
+
+        Logger.empty();
+
+        const response = await service.generate(
+            prompt
+        );
+
+        Logger.info("AI Response:");
+        Logger.info(response.text);
 
         Logger.empty();
 
