@@ -35,6 +35,12 @@ export class ProviderManager {
 
     }
 
+    public isEmpty(): boolean {
+
+        return this.getRegisteredCount() === 0;
+
+    }
+
     public async initialize(): Promise<void> {
 
         for (const provider of this.registry.getAll()) {

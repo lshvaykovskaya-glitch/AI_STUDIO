@@ -27,6 +27,28 @@ export class App {
 
         await this.providers.initialize();
 
+        const providers = this.providers.getAll();
+
+        if (providers.length === 0) {
+
+            Logger.info("Registered providers: none");
+
+        } else {
+
+            Logger.info("Registered providers:");
+
+            for (const provider of providers) {
+
+                Logger.info(
+                    ` • ${provider.name} ${provider.version} (${provider.id})`
+                );
+
+            }
+
+        }
+
+        Logger.empty();
+
         Logger.info("Application started.");
 
         this.modules.initialize();

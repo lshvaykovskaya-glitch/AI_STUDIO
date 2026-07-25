@@ -3,7 +3,9 @@ import { ConfigurationService } from "../config/ConfigurationService.js";
 import { ServiceContainer } from "../container/ServiceContainer.js";
 import { Logger } from "../logging/Logger.js";
 import { ModuleRegistry } from "../modules/ModuleRegistry.js";
+
 import { ProviderManager } from "../../../providers/src/manager/ProviderManager.js";
+import { ProviderRegistrar } from "../../../providers/src/registration/ProviderRegistrar.js";
 
 export class Runtime {
 
@@ -26,6 +28,10 @@ export class Runtime {
         this.configuration = new ConfigurationService();
 
         this.providers = new ProviderManager();
+
+        ProviderRegistrar.register(
+            this.providers
+        );
 
         this.container.registerInstance(
             ModuleRegistry,
@@ -60,6 +66,7 @@ export class Runtime {
         Logger.empty();
 
         Logger.info("Starting Runtime...");
+
         Logger.empty();
 
         await this.app.start();
