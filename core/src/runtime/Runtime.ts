@@ -3,6 +3,7 @@ import { ConfigurationService } from "../config/ConfigurationService.js";
 import { ServiceContainer } from "../container/ServiceContainer.js";
 import { Logger } from "../logging/Logger.js";
 import { ModuleRegistry } from "../modules/ModuleRegistry.js";
+import { ProviderManager } from "../../../providers/src/manager/ProviderManager.js";
 
 export class Runtime {
 
@@ -11,6 +12,8 @@ export class Runtime {
     private readonly modules: ModuleRegistry;
 
     private readonly configuration: ConfigurationService;
+
+    private readonly providers: ProviderManager;
 
     private readonly app: App;
 
@@ -22,6 +25,8 @@ export class Runtime {
 
         this.configuration = new ConfigurationService();
 
+        this.providers = new ProviderManager();
+
         this.container.registerInstance(
             ModuleRegistry,
             this.modules
@@ -32,9 +37,15 @@ export class Runtime {
             this.configuration
         );
 
-        this.app = new App(
-            this.modules
+        this.container.registerInstance(
+            ProviderManager,
+            this.providers
         );
+
+      this.app = new App(
+    this.modules,
+    this.providers
+);
 
     }
 

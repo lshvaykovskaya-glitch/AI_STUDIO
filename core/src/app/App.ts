@@ -1,11 +1,13 @@
 import { Logger } from "../logging/Logger.js";
 import { ModuleRegistry } from "../modules/ModuleRegistry.js";
 import { Version } from "./Version.js";
+import { ProviderManager } from "../../../providers/src/manager/ProviderManager.js";
 
 export class App {
 
     constructor(
-        private readonly modules: ModuleRegistry
+        private readonly modules: ModuleRegistry,
+        private readonly providers: ProviderManager
     ) {
     }
 
@@ -23,6 +25,8 @@ export class App {
 
         Logger.empty();
 
+        this.providers.initialize();
+
         Logger.info("Application started.");
 
         this.modules.initialize();
@@ -36,6 +40,8 @@ export class App {
         Logger.info("Stopping application...");
 
         this.modules.shutdown();
+
+        this.providers.shutdown();
 
     }
 
