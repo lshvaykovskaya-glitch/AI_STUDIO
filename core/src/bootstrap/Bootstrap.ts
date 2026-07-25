@@ -2,19 +2,22 @@ import { Runtime } from "../runtime/Runtime.js";
 
 export class Bootstrap {
 
-    public start(): void {
+    public static async start(): Promise<void> {
 
         const runtime = new Runtime();
 
-        runtime.start();
+        await runtime.start();
 
-        process.on("SIGINT", () => {
+        const shutdown = async (): Promise<void> => {
 
-            runtime.stop();
+            await runtime.stop();
 
             process.exit(0);
 
-        });
+        };
+
+        process.once("SIGINT", shutdown);
+        process.once("SIGTERM", shutdown);
 
     }
 

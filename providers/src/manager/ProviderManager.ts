@@ -11,6 +11,12 @@ export class ProviderManager {
 
     }
 
+    public has(id: string): boolean {
+
+        return this.registry.has(id);
+
+    }
+
     public get(id: string): AIProvider {
 
         return this.registry.get(id);
@@ -20,6 +26,12 @@ export class ProviderManager {
     public getAll(): AIProvider[] {
 
         return this.registry.getAll();
+
+    }
+
+    public getRegisteredCount(): number {
+
+        return this.registry.getAll().length;
 
     }
 

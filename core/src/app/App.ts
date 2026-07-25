@@ -11,7 +11,7 @@ export class App {
     ) {
     }
 
-    public start(): void {
+    public async start(): Promise<void> {
 
         Logger.line();
 
@@ -25,7 +25,7 @@ export class App {
 
         Logger.empty();
 
-        this.providers.initialize();
+        await this.providers.initialize();
 
         Logger.info("Application started.");
 
@@ -33,7 +33,7 @@ export class App {
 
     }
 
-    public stop(): void {
+    public async stop(): Promise<void> {
 
         Logger.empty();
 
@@ -41,7 +41,7 @@ export class App {
 
         this.modules.shutdown();
 
-        this.providers.shutdown();
+        await this.providers.shutdown();
 
     }
 

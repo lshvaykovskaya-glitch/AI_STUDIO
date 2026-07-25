@@ -42,14 +42,14 @@ export class Runtime {
             this.providers
         );
 
-      this.app = new App(
-    this.modules,
-    this.providers
-);
+        this.app = new App(
+            this.modules,
+            this.providers
+        );
 
     }
 
-    public start(): void {
+    public async start(): Promise<void> {
 
         Logger.info("Loading configuration...");
 
@@ -62,13 +62,13 @@ export class Runtime {
         Logger.info("Starting Runtime...");
         Logger.empty();
 
-        this.app.start();
+        await this.app.start();
 
     }
 
-    public stop(): void {
+    public async stop(): Promise<void> {
 
-        this.app.stop();
+        await this.app.stop();
 
     }
 
